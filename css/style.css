@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Nanum+Brush+Script&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(180deg, #a1c4fd 0%, #c2e9fb 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Nanum Brush Script', cursive;
+    overflow: hidden; /* 배경 구름 때문에 스크롤 방지 */
+}
+
+.container {
+    width: 82%; 
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.92);
+    padding: 30px 20px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    overflow: visible;
+}
+
+h1 { font-family: 'Gamja Flower', cursive; color: #5a7d9a; font-size: 1.5rem; margin-bottom: 20px; }
+
+.photo-frame {
+    width: 130px; height: 130px; margin: 0 auto 20px auto;
+    overflow: hidden; border-radius: 50%; border: 4px solid white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.pet-image { width: 100%; height: 100%; object-fit: cover; }
+
+.letter-content {
+    font-size: 1.4rem; line-height: 1.6; color: #444;
+    text-align: left; white-space: pre-wrap;
+    max-height: 300px; overflow-y: auto; padding-right: 5px;
+    /* 스크롤 부드럽게 넘어가게 추가 */
+    scroll-behavior: smooth; 
+}
+
+/* 스크롤바 */
+.letter-content::-webkit-scrollbar { width: 4px; }
+.letter-content::-webkit-scrollbar-thumb { background: #a1c4fd; border-radius: 10px; }
+
+.footer {
+    margin-top: 15px; font-family: 'Gamja Flower', cursive;
+    font-size: 1.1rem; color: #6a89cc; border-top: 1px dashed #d1d8e0; padding-top: 15px;
+}
+
+#btn-play {
+    padding: 12px 30px; border: none; background: #fff; color: #a1c4fd;
+    border-radius: 50px; cursor: pointer; font-family: 'Gamja Flower', cursive;
+    font-size: 1.1rem; font-weight: bold; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 지정 위치 사진 - 모바일에서 짤리지 않도록 크기 약간 최적화 */
+.floating-photo {
+    position: absolute; width: 75px; height: 75px; border-radius: 50%;
+    border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    opacity: 0; z-index: -1; object-fit: cover;
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.floating-photo.active { opacity: 1; transform: scale(1); }
+
+/* --- 구름 다시 살리기 --- */
+.clouds-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+}
+
+.cloud {
+    position: absolute;
+    background: #fff;
+    border-radius: 50px;
+    opacity: 0.8;
+    box-shadow: 0 8px 15px rgba(255,255,255,0.3);
+    animation: float 15s infinite ease-in-out;
+}
+
+/* 몽글몽글한 구름 모양을 위한 가상 요소 */
+.cloud::after, .cloud::before {
+    content: ''; position: absolute; background: #fff; border-radius: 50%;
+}
+
+.cloud-1 { width: 80px; height: 30px; top: 10%; left: 10%; animation-duration: 18s; }
+.cloud-1::after { width: 40px; height: 40px; top: -20px; left: 15px; }
+.cloud-1::before { width: 30px; height: 30px; top: -10px; left: 40px; }
+
+.cloud-2 { width: 100px; height: 35px; top: 20%; right: 10%; animation-delay: -2s; }
+.cloud-2::after { width: 50px; height: 50px; top: -25px; left: 20px; }
+
+.cloud-3 { width: 70px; height: 25px; bottom: 20%; left: 15%; animation-delay: -5s; }
+.cloud-3::after { width: 35px; height: 35px; top: -15px; left: 15px; }
+
+.cloud-4 { width: 120px; height: 40px; bottom: 10%; right: 5%; animation-delay: -7s; }
+.cloud-4::after { width: 60px; height: 60px; top: -30px; left: 30px; }
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(20px, -20px); }
+}
