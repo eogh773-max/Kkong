@@ -69,7 +69,7 @@ function spawnSmallPhoto() {
     const pos = fixedPositions[photoIndex];
     const img = document.createElement('img');
     
-    img.src = `/img/kkong_${photoIndex + 2}.jpg`; 
+    img.src = `img/kkong_${photoIndex + 2}.jpg`; 
     img.className = 'floating-photo';
     
     img.style.left = pos.left; // % 문자열 그대로 적용
